@@ -5,12 +5,12 @@ import { getBoard } from "../lib/helpers";
 import { getComponentCollection } from "../boards/components/components";
 import { moberriesApi } from "../lib/moberries-api";
 
-interface IndexPage extends Page {
+interface IndexPageProps extends Page {
   companies: Company[];
   jobs: Job[];
 }
 
-export default ({ slug, companies, jobs }: IndexPage) => {
+const IndexPage: React.FC<IndexPageProps> = ({ slug, companies, jobs }) => {
   const {
     Header,
     Footer,
@@ -26,6 +26,8 @@ export default ({ slug, companies, jobs }: IndexPage) => {
     </Fragment>
   );
 };
+
+export default IndexPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const [

@@ -9,7 +9,7 @@ interface DefaultJobCardProps {
 
 const DefaultJobCard: React.FC<DefaultJobCardProps> = ({ job }) => {
   return (
-    <Media className="box p-3 border align-items-center">
+    <Media className="p-3 border align-items-center">
       <Media left>
         <img
           src={job.company.logo}
@@ -21,7 +21,7 @@ const DefaultJobCard: React.FC<DefaultJobCardProps> = ({ job }) => {
       </Media>
       <Media body>
         <h4 className="mb-1">
-          <Link href="#">
+          <Link href="/job/[id]" as={`/job/${job.id}`}>
             <a className="text-body">{job.title}</a>
           </Link>
         </h4>

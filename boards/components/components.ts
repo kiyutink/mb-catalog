@@ -4,7 +4,7 @@ import { Boards } from "../../lib/types";
 
 export const getComponentCollection = (slug: Boards) => {
   return {
-    lhoft: LhoftComponents,
-    default: DefaultComponents,
+    [Boards.Lhoft]: LhoftComponents,
+    [Boards.Default]: DefaultComponents,
   }[slug];
 };

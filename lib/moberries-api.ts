@@ -42,4 +42,16 @@ export const moberriesApi = {
       params,
     });
   },
+
+  getCompany: ({ id }: { id: number }) => http(`/api/v2/companies/${id}/`),
+  getCompanyJobList: ({ id }: { id: number }) => {
+    const params = {
+      page: 1,
+      limit: 10,
+    };
+    return http(`/api/v2/companies/${id}/jobs/`, {
+      params,
+    });
+  },
+  getJob: ({ id }: { id: number }) => http(`/api/v2/jobs/${id}/`),
 };

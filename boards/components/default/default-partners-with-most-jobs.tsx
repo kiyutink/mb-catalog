@@ -15,7 +15,7 @@ const DefaultPartnersWithMostJobs: React.FC<DefaultPartnersWithMostJobsProps> = 
     <Container>
       <Row>
         <Col>
-          <h1 className="mb-5 mt-5">Partners with most jobs</h1>
+          <h1 className="my-5 ">Partners with most jobs</h1>
         </Col>
       </Row>
       <Row className="mb-3">

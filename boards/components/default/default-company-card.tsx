@@ -7,11 +7,9 @@ interface DefaultCompanyCardProps {
   company: Company;
 }
 
-const DefaultCompanyCard: React.FC<DefaultCompanyCardProps> = ({
-  company,
-}) => {
+const DefaultCompanyCard: React.FC<DefaultCompanyCardProps> = ({ company }) => {
   return (
-    <Link href="#">
+    <Link href="/jobs/company/[id]" as={`/jobs/company/${company.id}`}>
       <a className="text-decoration-none">
         <Media className="text-body">
           <img
@@ -35,4 +33,4 @@ const DefaultCompanyCard: React.FC<DefaultCompanyCardProps> = ({
   );
 };
 
-export default DefaultCompanyCard
+export default DefaultCompanyCard;
