@@ -1,5 +1,6 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from "axios";
 import humps from "humps";
+import { JobStatuses } from "./types";
 
 export function camelizeInterceptor(res: AxiosResponse) {
   if (typeof window !== "undefined" && res.data instanceof window.Blob) {
@@ -8,6 +9,16 @@ export function camelizeInterceptor(res: AxiosResponse) {
 
   res.data = humps.camelizeKeys(res.data);
   return res;
+}
+
+export function pageToOffsetInterceptor(req: AxiosRequestConfig) {
+  if (req.params && req.params.page) {
+    const { page, limit, ...params } = req.params;
+    const offset = limit * (page - 1);
+    req.params = { ...params, offset, limit };
+  }
+
+  return req;
 }
 
 export function decamelizeInterceptor(req: AxiosRequestConfig) {
@@ -23,23 +34,27 @@ export const http = axios.create({
 
 http.interceptors.response.use(camelizeInterceptor);
 http.interceptors.request.use(decamelizeInterceptor);
+http.interceptors.request.use(pageToOffsetInterceptor);
+
+type RequestParams = {
+  [key: string]: any;
+};
 
 export const moberriesApi = {
-  getCompanyList: () => {
+  getCompanyList: (params?: RequestParams) => {
     return http("/api/v2/partners/", {
-      params: { limit: 10, offset: 0 },
+      params: { limit: 10, offset: 0, ...params },
     });
   },
 
-  getJobList: () => {
-    const params = {
-      limit: 10,
-      page: 1,
-      statusIn: ["ACT"],
-    };
-
+  getJobList: (params?: RequestParams) => {
     return http(`/api/v2/jobs/`, {
-      params,
+      params: {
+        limit: 10,
+        page: 1,
+        statusIn: [JobStatuses.ACT],
+        ...params,
+      },
     });
   },
 

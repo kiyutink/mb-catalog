@@ -6,6 +6,7 @@ $light: #f6f7f8 !default;
 $dark: #011627 !default;
 $white: #fff !default;
 $black: #000 !default;
+$moberries-color: #dd1843;
 
 $spacer: 1rem;
 $spacers: ();
@@ -73,8 +74,6 @@ $form-group-margin-bottom: 1.5rem;
 $dropdown-border-radius: $border-radius;
 $dropdown-divider-bg: $secondary;
 $dropdown-border-width: 0;
-// $dropdown-link-color: tint($dark, 40);
-// $dropdown-link-active-bg: $gray-100;
 
 $border-color: $light !default;
 

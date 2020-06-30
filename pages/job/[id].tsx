@@ -4,22 +4,21 @@ import { GetServerSideProps } from "next";
 import { getBoard } from "../../lib/helpers";
 import { getComponentCollection } from "../../boards/components/components";
 import { moberriesApi } from "../../lib/moberries-api";
-import { Container } from "reactstrap";
 import { DoubleColumnLayout } from "../../boards/components/shared/double-column-layout";
 
 interface JobPageProps extends Page {
   job: Job;
 }
 
-const JobPage: React.FC<JobPageProps> = ({ job, slug }) => {
+const JobPage: React.FC<JobPageProps> = ({ job, board }) => {
   const {
     Header,
     Footer,
     JobInfo,
     JobDetails,
     JobDescription,
-    JobSidebar
-  } = getComponentCollection(slug);
+    JobSidebar,
+  } = getComponentCollection(board.slug);
   return (
     <Fragment>
       <Header />
@@ -30,10 +29,9 @@ const JobPage: React.FC<JobPageProps> = ({ job, slug }) => {
           <JobDescription job={job} />
         </DoubleColumnLayout.Content>
         <DoubleColumnLayout.Sidebar>
-          <JobSidebar job={job}/>
+          <JobSidebar job={job} />
         </DoubleColumnLayout.Sidebar>
       </DoubleColumnLayout>
-
       <Footer />
     </Fragment>
   );
@@ -44,12 +42,12 @@ export default JobPage;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const jobId = Number(context.query.id);
 
-  const slug = getBoard(context);
+  const board = getBoard(context);
   const { data: job } = await moberriesApi.getJob({ id: jobId });
 
   return {
     props: {
-      slug,
+      board,
       job,
     },
   };

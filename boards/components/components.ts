@@ -1,10 +1,10 @@
 import LhoftComponents from "./lhoft/lhoft-components";
 import DefaultComponents from "./default/default-components";
-import { Boards } from "../../lib/types";
+import { BoardSlugs } from "../../lib/types";
 
-export const getComponentCollection = (slug: Boards) => {
+export const getComponentCollection = (slug: BoardSlugs) => {
   return {
-    [Boards.Lhoft]: LhoftComponents,
-    [Boards.Default]: DefaultComponents,
+    [BoardSlugs.Lhoft]: LhoftComponents,
+    [BoardSlugs.Default]: DefaultComponents,
   }[slug];
 };

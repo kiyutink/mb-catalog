@@ -1,10 +1,25 @@
 import { GetServerSidePropsContext } from "next";
-export const getBoard = (context: GetServerSidePropsContext) => {
+import { Board, BoardSlugs } from "./types";
+
+export const getSubdomain = (
+  context: GetServerSidePropsContext
+): string | null => {
   const hostParts = context.req.headers.host?.split(".") ?? [];
   if (hostParts?.length > 2) {
-    const subdomain = hostParts[0];
-    return subdomain === "www" ? "default" : subdomain;
+    return hostParts[0];
   } else {
-    return "default";
+    return null;
+  }
+};
+
+export const getBoard = (context: GetServerSidePropsContext): Board => {
+  const subdomain = getSubdomain(context);
+  const allCustomBoardSlugs = Object.values(BoardSlugs).filter(
+    (bs) => bs !== BoardSlugs.Default
+  );
+  if (allCustomBoardSlugs.includes(subdomain as BoardSlugs)) {
+    return { slug: subdomain as BoardSlugs, subdomain };
+  } else {
+    return { slug: BoardSlugs.Default, subdomain };
   }
 };

@@ -8,15 +8,23 @@ import { getComponentCollection } from "../../../boards/components/components";
 interface CompanyPageProps extends Page {
   company: Company;
   jobs: Job[];
+  jobsCount: number;
 }
 
-const CompanyPage: React.FC<CompanyPageProps> = ({ company, slug, jobs }) => {
-  const { Header, Footer, JobList, CompanyInfo } = getComponentCollection(slug);
+const CompanyPage: React.FC<CompanyPageProps> = ({
+  company,
+  board,
+  jobs,
+  jobsCount,
+}) => {
+  const { Header, Footer, JobList, CompanyInfo } = getComponentCollection(
+    board.slug
+  );
   return (
     <Fragment>
       <Header />
       <CompanyInfo company={company} />
-      <JobList jobs={jobs} />
+      <JobList jobs={jobs} jobsCount={jobsCount} />
       <Footer />
     </Fragment>
   );
@@ -25,21 +33,22 @@ const CompanyPage: React.FC<CompanyPageProps> = ({ company, slug, jobs }) => {
 export default CompanyPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const slug = getBoard(context);
+  const board = getBoard(context);
   const companyId = Number(context.query.id);
   const { data: company } = await moberriesApi.getCompany({
     id: companyId,
   });
   const {
-    data: { results: jobs },
+    data: { results: jobs, count: jobsCount },
   } = await moberriesApi.getCompanyJobList({
     id: companyId,
   });
   return {
     props: {
       company,
-      slug,
+      board,
       jobs,
+      jobsCount,
     },
   };
 };

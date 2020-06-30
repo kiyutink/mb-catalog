@@ -1,10 +1,15 @@
-export enum Boards {
+export enum BoardSlugs {
   Lhoft = "lhoft",
   Default = "default",
 }
 
+export interface Board {
+  slug: BoardSlugs;
+  subdomain: string | null;
+}
+
 export interface Page {
-  slug: Boards;
+  board: Board;
 }
 
 export enum CompanySizes {

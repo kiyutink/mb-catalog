@@ -13,7 +13,7 @@ export default () => {
       <Container>
         <NavbarBrand href="#" rel="noopener noreferrer" className="mr-auto">
           <img
-            src="/assets/mb-logo-dark.svg"
+            src="/assets/mb-logo-home.svg"
             alt="Moberries"
             width={185}
             height={40}
