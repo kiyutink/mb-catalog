@@ -1,6 +1,10 @@
 import React from "react";
 import { Job } from "../../../lib/types";
-import { Badge } from "reactstrap";
+import { Badge, Col, Row } from "reactstrap";
+import { JobType } from "../shared/job-type";
+import { LanguageLevel } from "../shared/language-level";
+import { Salary } from "../shared/salary";
+import { CareerLevel } from "../shared/career-level";
 
 interface DefaultJobDetailsProps {
   job: Job;
@@ -18,61 +22,65 @@ const DefaultJobDetails: React.FC<DefaultJobDetailsProps> = ({ job }) => {
     languages,
   } = job;
   return (
-    <div className="p-3 border-left border-right">
-      <div className="d-md-flex mb-2">
-        <div className="text-muted">
-          <span>General</span>
-        </div>
-        <div>
+    <div className="p-3 border-left border-right box rounded my-2">
+      <Row className="mt-1">
+        <Col xs={12} md={2}>
+          <span className="text-muted">General</span>
+        </Col>
+        <Col xs={12} md={10}>
           {salaryMin > 0 && salaryMax > 0 && (
-            <Badge color="light">
-              {salaryMin} {salaryMax}
+            <Badge color="light" className="mr-1 mb-1">
+              <Salary salaryMax={salaryMax} salaryMin={salaryMin} />
             </Badge>
           )}
-          <Badge color="light">career level: {careerLevel}</Badge>
+          <Badge color="light" className="mr-1 mb-1">
+            Career level: <CareerLevel level={careerLevel} />
+          </Badge>
           {jobTypes.length > 0 &&
             jobTypes.map((i) => (
-              <Badge key={i} color="light">
-                {i}
-                {/* <JobType jobType={i} /> */}
+              <Badge key={i} color="light" className="mr-1 mb-1">
+                <JobType jobType={i} />
               </Badge>
             ))}
-          {relocate && "relocation"}
-          {/* <Badge color="light">{t("relocation")}</Badge>} */}
-          {remote && "remote"}
-          {/* <Badge color="light">{t("remote")}</Badge>} */}
-        </div>
-      </div>
+          {relocate && (
+            <Badge color="light" className="mr-1 mb-1">
+              Relocation
+            </Badge>
+          )}
+          {remote && (
+            <Badge color="light" className="mr-1 mb-1">
+              Remote
+            </Badge>
+          )}
+        </Col>
+      </Row>
       {languages.length > 0 && (
-        <div className="d-md-flex mb-2">
-          <div className="text-muted">
-            languages
-            {/* <span>{t("languages")}</span> */}
-          </div>
-          <div>
+        <Row className="mt-1">
+          <Col xs={12} md={2}>
+            <span className="text-muted">Languages</span>
+          </Col>
+          <Col xs={12} md={10}>
             {languages.map((l) => (
-              <Badge key={l.id} color="light">
-                <span>{l.name}</span> -{l.level}
-                {/* <LanguageLevel level={l.level} /> */}
+              <Badge key={l.id} color="light" className="mr-1 mb-1">
+                <span>{l.name}</span> - <LanguageLevel level={l.level} />
               </Badge>
             ))}
-          </div>
-        </div>
+          </Col>
+        </Row>
       )}
       {skills.length > 0 && (
-        <div className="d-md-flex">
-          <div className="text-muted">
-            skills
-            {/* <span>{t("skills")}</span> */}
-          </div>
-          <div>
+        <Row className="mt-1">
+          <Col xs={12} md={2}>
+            <span className="text-muted">Skills</span>
+          </Col>
+          <Col xs={12} md={10}>
             {skills.map((s) => (
-              <Badge key={s.id} color="light">
+              <Badge key={s.id} color="light" className="mr-1 mb-1">
                 {s.name}
               </Badge>
             ))}
-          </div>
-        </div>
+          </Col>
+        </Row>
       )}
     </div>
   );

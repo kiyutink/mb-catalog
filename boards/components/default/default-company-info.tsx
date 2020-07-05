@@ -22,18 +22,16 @@ const DefaultCompanyInfo: React.FC<DefaultCompanyInfoProps> = ({ company }) => {
               />
             </Media>
             <Media className="justify-content-between" body>
-              <h4 className="d-flex justify-content-between align-items-center">
-                <a className="card-link">{company.name}</a>
+              <h4 className="d-flex justify-content-between align-items-center mb-0">
+                {company.name}
               </h4>
               <div>
-                <i className="fas fa-link mr-1" />
+                <i className="fas fa-link fa-fw mr-1 my-2" />
                 <a href={company.website}>{company.website}</a>
               </div>
-              <div className="d-flex">
-                <div className="mr-3">
-                  <i className="fas fa-sm fa-map-marker-alt" />
-                  <span className="ml-1">{company.city.name}</span>
-                </div>
+              <div>
+                <i className="fas fa-map-marker-alt fa-fw mr-1" />
+                <span>{company.city.name}</span>
               </div>
             </Media>
           </Media>

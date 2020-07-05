@@ -12,27 +12,25 @@ const DefaultJobSidebar: React.FC<DefaultJobSidebar> = ({
   similarJobs,
 }) => {
   return (
-    <div>
-      <Fragment>
-        {job.status === JobStatuses.ACT && (
-          <Button
-            className="mb-3 d-none d-lg-block"
-            block
-            color="primary"
-            href="#"
-            tag="a"
-            target="_blank"
-          >
-            Apply now
-          </Button>
-        )}
-        {/* <JobShare
+    <div className="mt-5">
+      {job.status === JobStatuses.ACT && (
+        <Button
+          className="mb-3 d-none d-lg-block"
+          block
+          color="primary"
+          href="#"
+          tag="a"
+          target="_blank"
+        >
+          Apply now
+        </Button>
+      )}
+      {/* <JobShare
           jobId={job.id}
           jobTitle={job.title}
           companyName={job.company.name}
         />
         {similarJobs.length > 0 && <SimilarJobList jobs={similarJobs} />} */}
-      </Fragment>
     </div>
   );
 };

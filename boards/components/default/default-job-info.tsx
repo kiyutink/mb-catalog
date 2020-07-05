@@ -2,6 +2,7 @@ import React from "react";
 import { Job } from "../../../lib/types";
 import { Media } from "reactstrap";
 import Link from "next/link";
+import { Img } from "../shared/img";
 
 interface DefaultJobInfoProps {
   job: Job;
@@ -9,9 +10,9 @@ interface DefaultJobInfoProps {
 
 const DefaultJobInfo: React.FC<DefaultJobInfoProps> = ({ job }) => {
   return (
-    <Media className="p-3 rounded-top border">
+    <Media className="p-3 rounded-top border box mt-5 rounded">
       <Media left>
-        <img
+        <Img
           src={job.company.logo}
           alt={`${job.company.name} logo`}
           width="80"
@@ -28,12 +29,12 @@ const DefaultJobInfo: React.FC<DefaultJobInfoProps> = ({ job }) => {
             href="/jobs/company/[id]"
             as={`/jobs/company/${job.company.id}`}
           >
-            <a className="card-link">{job.company.name}</a>
+            <a className="text-body text-decoration-none">{job.company.name}</a>
           </Link>
         </div>
         <div className="d-flex flex-wrap tag-list">
           {job.locations.map((l) => (
-            <span key={l.placeId}>
+            <span key={l.placeId} className="mr-2">
               <i className="fas fa-sm fa-map-marker-alt" /> {l.name}
             </span>
           ))}

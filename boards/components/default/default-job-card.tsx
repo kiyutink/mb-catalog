@@ -4,7 +4,7 @@ import { Media } from "reactstrap";
 import Link from "next/link";
 import { Job } from "../../../lib/types";
 import { Img } from "../shared/img";
-import { formatSalary } from "../../../lib/helpers";
+import { Salary } from "../shared/salary";
 
 interface DefaultJobCardProps {
   job: Job;
@@ -20,10 +20,7 @@ const DefaultJobCard: React.FC<DefaultJobCardProps> = ({ job, className }) => {
   };
   return (
     <Media
-      className={classNames(
-        "box border align-items-center rounded",
-        className
-      )}
+      className={classNames("box border align-items-center rounded", className)}
     >
       <Media left className="py-3 pl-3">
         <Img
@@ -49,16 +46,18 @@ const DefaultJobCard: React.FC<DefaultJobCardProps> = ({ job, className }) => {
         </div>
         <div className="d-flex flex-wrap">
           {salaryMin > 0 && salaryMax > 0 && (
-            <span className="pt-1 pr-1 mr-2">
-              {formatSalary(salaryMin, salaryMax)}
+            <span className="mt-1 mr-4">
+              <Salary salaryMax={salaryMax} salaryMin={salaryMin} />
             </span>
           )}
           {locations.slice(0, 3).map((l) => (
-            <span key={l.placeId} className="pt-1 pr-1 mr-1">
+            <span key={l.placeId} className="mt-1 mr-2">
               <i className="fas fa-map-marker-alt" /> {l.name}
             </span>
           ))}
-          {locations.length > 3 && <span>And {locations.length - 3} more</span>}
+          {locations.length > 3 && (
+            <span className="mt-1">(and {locations.length - 3} more)</span>
+          )}
         </div>
       </Media>
       <Media right className="align-self-stretch">
