@@ -6,18 +6,23 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
+import Link from "next/link";
 
 export default () => {
   return (
     <Navbar color="dark" dark>
       <Container>
-        <NavbarBrand href="#" rel="noopener noreferrer" className="mr-auto">
-          <img
-            src="/assets/mb-logo-home.svg"
-            alt="Moberries"
-            width={185}
-            height={40}
-          />
+        <NavbarBrand className="mr-auto" tag="div">
+          <Link href="/">
+            <a>
+              <img
+                src="/assets/mb-logo-home.svg"
+                alt="Moberries"
+                width={185}
+                height={40}
+              />
+            </a>
+          </Link>
         </NavbarBrand>
 
         <Nav navbar className="flex-row align-items-center">

@@ -23,3 +23,21 @@ export const getBoard = (context: GetServerSidePropsContext): Board => {
     return { slug: BoardSlugs.Default, subdomain };
   }
 };
+
+export const formatSalary = (salaryMin: number, salaryMax: number): string => {
+  let salary = "";
+
+  if (salaryMin > 0 && salaryMax > 0 && salaryMax >= salaryMin) {
+    salary = `${salaryMin / 1000} - ${salaryMax / 1000}K €`;
+  }
+
+  if (salaryMax > 0 && salaryMin === 0) {
+    salary = `${salaryMax / 1000}K €`;
+  }
+
+  if (salaryMin > 0 && salaryMax === 0) {
+    salary = `${salaryMin / 1000}K €`;
+  }
+
+  return salary;
+};

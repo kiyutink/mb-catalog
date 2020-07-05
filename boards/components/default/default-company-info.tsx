@@ -8,10 +8,10 @@ interface DefaultCompanyInfoProps {
 
 const DefaultCompanyInfo: React.FC<DefaultCompanyInfoProps> = ({ company }) => {
   return (
-    <Container>
+    <Container className="mt-5">
       <Row className="justify-content-center">
         <Col sm="12" lg="10">
-          <Media className="p-3 border border-bottom-0">
+          <Media className="p-3 border border-bottom-0 box rounded">
             <Media left>
               <img
                 src={company.logo}
@@ -37,7 +37,7 @@ const DefaultCompanyInfo: React.FC<DefaultCompanyInfoProps> = ({ company }) => {
               </div>
             </Media>
           </Media>
-          <div className="p-3 border">{company.about}</div>
+          <div className="p-3 border box mt-2 rounded">{company.about}</div>
         </Col>
       </Row>
     </Container>

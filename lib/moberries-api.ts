@@ -27,7 +27,7 @@ export function decamelizeInterceptor(req: AxiosRequestConfig) {
   return req;
 }
 export const http = axios.create({
-  baseURL: "https://api.dev.moberries.com/",
+  baseURL: "https://api.moberries.com/",
   timeout: 30000,
   headers: {},
 });

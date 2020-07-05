@@ -13,14 +13,14 @@ const DefaultCompanyCard: React.FC<DefaultCompanyCardProps> = ({ company }) => {
   return (
     <Link href="/jobs/company/[id]" as={`/jobs/company/${id}`}>
       <a className="text-decoration-none">
-        <Media className="text-body box">
+        <Media className="text-body box rounded overflow-hidden d-flex align-items-stretch">
           <Img src={logo} alt={`${name} logo`} height="80" width="80" />
-          <Media body className="p-2 text-truncate">
+          <Media body className="px-2 py-3 text-truncate">
             <Media heading tag="h5" className="text-truncate">
               {name}
             </Media>
-            <div className="d-flex align-items-center">
-              <i className="fas fa-sm fa-map-marker-alt" />
+            <div>
+              <i className="fas fa-map-marker-alt" />
               <span className="ml-1">{city.name}</span>
             </div>
           </Media>
