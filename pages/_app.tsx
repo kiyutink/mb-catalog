@@ -1,4 +1,4 @@
-import "../styles/styles.scss";
+import "../styles/default/default.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import NProgress from "nprogress";
 import { Router } from "next/router";

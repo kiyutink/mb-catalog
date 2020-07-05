@@ -1,0 +1,95 @@
+// Bootstrap variables overrides (No other variables are allowed in this file)
+$primary: #20a4f3 !default;
+$secondary: #41505d !default;
+$success: #2ec4b6 !default;
+$info: mix(white, $primary, 80) !default;
+$light: #f6f7f8 !default;
+$dark: #011627 !default;
+
+$body-bg: #eef2f5 !default;
+
+$spacer: 1rem !default;
+$spacers: map-merge(
+  (
+    0: 0,
+    1: (
+      $spacer * 0.25,
+    ),
+    2: (
+      $spacer * 0.5,
+    ),
+    3: $spacer,
+    4: (
+      $spacer * 1.5,
+    ),
+    5: (
+      $spacer * 2,
+    ),
+    6: (
+      $spacer * 3,
+    ),
+    7: (
+      $spacer * 3.5,
+    ),
+    8: (
+      $spacer * 4,
+    ),
+    9: (
+      $spacer * 5,
+    ),
+  ),
+  ()
+) !default;
+
+$border-radius: 0.25rem !default;
+
+$border-radius-sm: $border-radius !default;
+$border-radius-lg: $border-radius !default;
+
+$font-weight-light: 300 !default;
+$font-weight-bold: 600 !default;
+
+$font-size-base: 1rem !default;
+
+$h1-font-size: $font-size-base * 2.2 !default;
+$h5-font-size: 1rem !default;
+$headings-font-weight: 600 !default;
+$display1-size: 4.5rem !default;
+$display2-size: 4rem !default;
+$display3-size: 3.5rem !default;
+$display4-size: 3rem !default;
+
+$input-btn-padding-y: 0.5rem !default;
+$input-btn-padding-x: 1rem !default;
+
+$btn-disabled-opacity: 0.3 !default;
+$btn-border-radius-lg: $border-radius-lg !default;
+
+$input-padding-y: $input-btn-padding-y !default;
+$input-padding-x: $input-btn-padding-x !default;
+
+$form-group-margin-bottom: 1.5rem !default;
+
+$dropdown-border-radius: $border-radius !default;
+$dropdown-divider-bg: $secondary !default;
+$dropdown-border-width: 0 !default;
+
+$border-color: $light !default;
+
+$pagination-border-color: $border-color !default;
+$pagination-disabled-bg: $light !default;
+$pagination-disabled-border-color: $border-color !default;
+$pagination-hover-border-color: $border-color !default;
+
+$badge-font-size: 86% !default;
+$badge-font-weight: $font-weight-light !default;
+$badge-padding-y: 0.75em !default;
+$badge-padding-x: 0.75em !default;
+
+$modal-dialog-margin-y-sm-up: 2rem !default;
+$modal-backdrop-opacity: 0.8 !default;
+
+$alert-padding-y: 1rem !default;
+$alert-padding-x: 0 !default;
+$alert-margin-bottom: 0 !default;
+$alert-border-radius: 0 !default;

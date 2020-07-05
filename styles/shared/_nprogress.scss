@@ -1,7 +1,9 @@
+$nprogress-bar-color: #dd1843 !default;
+
 #nprogress {
   pointer-events: none;
   .bar {
-    background: $moberries-color;
+    background: $nprogress-bar-color;
 
     position: fixed;
     z-index: 2000;
@@ -17,7 +19,7 @@
     right: 0px;
     width: 100px;
     height: 100%;
-    box-shadow: 0 0 10px $moberries-color, 0 0 5px $primary;
+    box-shadow: 0 0 10px $nprogress-bar-color, 0 0 5px $primary;
     opacity: 1;
     transform: rotate(3deg) translate(0px, -4px);
   }

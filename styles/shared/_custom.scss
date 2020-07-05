@@ -1,0 +1,13 @@
+$box-bg: white !default;
+$box-bg-light: $light !default;
+
+.clickable {
+  cursor: pointer;
+}
+
+.box {
+  background-color: $box-bg;
+  &-light {
+    background-color: $box-bg-light;
+  }
+}
