@@ -23,12 +23,12 @@ export default () => {
         <Nav navbar className="flex-row align-items-center">
           <NavItem>
             <NavLink
-              href="#"
+              href="https://app.moberries.com/signup"
               target="_blank"
               rel="noopener noreferrer"
               className="text-white"
             >
-              Sign in
+              Sign up
             </NavLink>
           </NavItem>
         </Nav>

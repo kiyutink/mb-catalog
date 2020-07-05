@@ -25,8 +25,10 @@ const DefaultPartnersWithMostJobs: React.FC<DefaultPartnersWithMostJobsProps> = 
       ))}
     </Row>
     <div className="text-center">
-      <Link href="#">
-        <a className="btn btn-primary text-uppercase">More Partners</a>
+      <Link href="/jobs/companies">
+        <a className="btn btn-primary text-uppercase rounded-pill">
+          More Partners
+        </a>
       </Link>
     </div>
   </Container>

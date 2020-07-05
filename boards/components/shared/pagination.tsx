@@ -8,12 +8,14 @@ interface PaginationProps {
   totalCount: number;
   itemsPerPage: number;
   isDisabled?: boolean;
+  className?: string;
 }
 
 export const Pagination: React.FC<PaginationProps> = ({
   totalCount,
   isDisabled,
   itemsPerPage,
+  className,
 }) => {
   const router = useRouter();
   if (!totalCount) {
@@ -38,7 +40,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     }
     return {
       pathname: path,
-      query,
+      query: query as { [id: string]: string },
     };
   };
 
@@ -52,7 +54,7 @@ export const Pagination: React.FC<PaginationProps> = ({
     }
     return {
       pathname: router.route,
-      query,
+      query: query as { [key: string]: string },
     };
   };
 
@@ -146,7 +148,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   }
 
   return (
-    <BPagination>
+    <BPagination className={className}>
       <PaginationItem disabled={currentPage === 1 || isDisabled}>
         <Link href={getPageHref(1)} as={getPageAs(1)}>
           <a className="page-link" aria-label="Previous">

@@ -15,13 +15,13 @@ const DefaultJobList: React.FC<JobListProps> = ({ jobs, jobsCount }) => {
       <Row>
         <Col lg={{ size: 10, offset: 1 }} md={12}>
           {jobs.map((j) => (
-            <DefaultJobCard job={j} key={j.id} />
+            <DefaultJobCard job={j} key={j.id} className="mb-1" />
           ))}
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <Pagination itemsPerPage={10} totalCount={jobsCount} />
+          <Pagination
+            className="mt-3"
+            itemsPerPage={10}
+            totalCount={jobsCount}
+          />
         </Col>
       </Row>
     </Container>
