@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Job, JobStatuses } from "../../../lib/types";
+import { Job, JobStatuses } from "../../lib/types";
 import { Button } from "reactstrap";
 
 interface DefaultJobSidebar {

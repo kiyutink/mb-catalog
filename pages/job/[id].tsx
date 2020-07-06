@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Job, Page } from "../../lib/types";
 import { GetServerSideProps } from "next";
 import { moberriesApi } from "../../lib/moberries-api";
-import { DoubleColumnLayout } from "../../boards/components/shared/double-column-layout";
+import { DoubleColumnLayout } from "../../components/shared/double-column-layout";
 import { useComponents } from "../../hooks/use-components";
 
 interface JobPageProps {

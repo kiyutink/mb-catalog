@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Media } from "reactstrap";
-import { Company } from "../../../lib/types";
+import { Company } from "../../lib/types";
 import { Img } from "../shared/img";
 
 interface DefaultCompanyCardProps {

@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 import {
   DefaultIndexPageProps,
   getIndexPageProps,
-} from "../boards/page-data-adapters/default";
+} from "../page-data-adapters/default";
 import { useComponents } from "../hooks/use-components";
 
 type IndexPageProps = DefaultIndexPageProps;

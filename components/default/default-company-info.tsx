@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Media } from "reactstrap";
-import { Company } from "../../../lib/types";
+import { Company } from "../../lib/types";
 
 interface DefaultCompanyInfoProps {
   company: Company;

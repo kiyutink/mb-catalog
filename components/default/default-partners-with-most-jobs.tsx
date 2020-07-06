@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Container, Row, Col } from "reactstrap";
 import DefaultCompanyCard from "./default-company-card";
-import { Company } from "../../../lib/types";
+import { Company } from "../../lib/types";
 
 interface DefaultPartnersWithMostJobsProps {
   companies: Company[];

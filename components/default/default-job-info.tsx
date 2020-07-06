@@ -1,5 +1,5 @@
 import React from "react";
-import { Job } from "../../../lib/types";
+import { Job } from "../../lib/types";
 import { Media } from "reactstrap";
 import Link from "next/link";
 import { Img } from "../shared/img";

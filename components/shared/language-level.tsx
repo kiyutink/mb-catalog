@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { LanguageLevels } from "../../../lib/types";
+import { LanguageLevels } from "../../lib/types";
 
 export const LanguageLevel: React.FC<{ level: LanguageLevels }> = ({
   level,

@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next";
-import { Company, Job, Page } from "../../../lib/types";
-import { moberriesApi } from "../../../lib/moberries-api";
+import { Company, Job, Page } from "../../lib/types";
+import { moberriesApi } from "../../lib/moberries-api";
 
 export interface DefaultIndexPageProps {
   companies: Company[];

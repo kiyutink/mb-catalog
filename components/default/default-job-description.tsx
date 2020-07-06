@@ -1,5 +1,5 @@
 import React from "react";
-import { Job } from "../../../lib/types";
+import { Job } from "../../lib/types";
 
 interface DefaultJobDescriptionProps {
   job: Job;
