@@ -1,26 +1,19 @@
 import React, { Fragment } from "react";
 import { GetServerSideProps } from "next";
-import { getComponentCollection } from "../boards/components/components";
 import {
   DefaultIndexPageProps,
   getIndexPageProps,
 } from "../boards/page-data-adapters/default";
+import { useComponents } from "../hooks/use-components";
 
 type IndexPageProps = DefaultIndexPageProps;
 
 const IndexPage: React.FC<IndexPageProps> = ({
-  board,
   companies,
   jobs,
   jobsCount,
 }) => {
-  const {
-    Header,
-    Footer,
-    PartnersWithMostJobs,
-    JobList,
-  } = getComponentCollection(board.slug);
-
+  const { Header, Footer, PartnersWithMostJobs, JobList } = useComponents();
   return (
     <Fragment>
       <Header />

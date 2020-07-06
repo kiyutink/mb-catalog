@@ -59,10 +59,11 @@ export const moberriesApi = {
   },
 
   getCompany: ({ id }: { id: number }) => http(`/api/v2/companies/${id}/`),
-  getCompanyJobList: ({ id }: { id: number }) => {
+  getCompanyJobList: ({ id, ...rest }: { id: number; [key: string]: any }) => {
     const params = {
       page: 1,
       limit: 10,
+      ...rest,
     };
     return http(`/api/v2/companies/${id}/jobs/`, {
       params,

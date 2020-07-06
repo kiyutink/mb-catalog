@@ -1,16 +1,15 @@
 import React, { Fragment } from "react";
 import { Job, Page } from "../../lib/types";
 import { GetServerSideProps } from "next";
-import { getBoard } from "../../lib/helpers";
-import { getComponentCollection } from "../../boards/components/components";
 import { moberriesApi } from "../../lib/moberries-api";
 import { DoubleColumnLayout } from "../../boards/components/shared/double-column-layout";
+import { useComponents } from "../../hooks/use-components";
 
-interface JobPageProps extends Page {
+interface JobPageProps {
   job: Job;
 }
 
-const JobPage: React.FC<JobPageProps> = ({ job, board }) => {
+const JobPage: React.FC<JobPageProps> = ({ job }) => {
   const {
     Header,
     Footer,
@@ -18,7 +17,7 @@ const JobPage: React.FC<JobPageProps> = ({ job, board }) => {
     JobDetails,
     JobDescription,
     JobSidebar,
-  } = getComponentCollection(board.slug);
+  } = useComponents()
   return (
     <Fragment>
       <Header />
@@ -42,12 +41,10 @@ export default JobPage;
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const jobId = Number(context.query.id);
 
-  const board = getBoard(context);
   const { data: job } = await moberriesApi.getJob({ id: jobId });
 
   return {
     props: {
-      board,
       job,
     },
   };

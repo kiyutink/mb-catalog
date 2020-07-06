@@ -13,19 +13,22 @@ export default () => {
     <Navbar color="dark" dark>
       <Container>
         <NavbarBrand className="mr-auto" tag="div">
-          <Link href="/">
-            <a>
-              <img
-                src="/assets/mb-logo-home.svg"
-                alt="Moberries"
-                width={185}
-                height={40}
-              />
-            </a>
-          </Link>
+          <a href="https://www.moberries.com">
+            <img
+              src="/assets/mb-logo-home.svg"
+              alt="Moberries"
+              width={185}
+              height={40}
+            />
+          </a>
         </NavbarBrand>
 
         <Nav navbar className="flex-row align-items-center">
+          <NavItem>
+            <Link href="/">
+              <a className="nav-link text-white mr-3">Catalog home</a>
+            </Link>
+          </NavItem>
           <NavItem>
             <NavLink
               href="https://app.moberries.com/signup"

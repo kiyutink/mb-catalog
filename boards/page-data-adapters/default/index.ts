@@ -1,9 +1,8 @@
 import { GetServerSideProps } from "next";
 import { Company, Job, Page } from "../../../lib/types";
 import { moberriesApi } from "../../../lib/moberries-api";
-import { getBoard } from "../../../lib/helpers";
 
-export interface DefaultIndexPageProps extends Page {
+export interface DefaultIndexPageProps {
   companies: Company[];
   jobs: Job[];
   jobsCount: number;
@@ -26,12 +25,12 @@ export const getIndexPageProps: GetServerSideProps<DefaultIndexPageProps> = asyn
     }),
     moberriesApi.getJobList({
       page: context.query.page,
+      status: "ACT"
     }),
   ]);
 
   return {
     props: {
-      board: getBoard(context),
       companies,
       jobs,
       jobsCount,

@@ -1,4 +1,5 @@
 import React from "react";
+import { isNil } from "ramda";
 import { Job } from "../../../lib/types";
 import { Badge, Col, Row } from "reactstrap";
 import { JobType } from "../shared/job-type";
@@ -33,9 +34,11 @@ const DefaultJobDetails: React.FC<DefaultJobDetailsProps> = ({ job }) => {
               <Salary salaryMax={salaryMax} salaryMin={salaryMin} />
             </Badge>
           )}
-          <Badge color="light" className="mr-1 mb-1">
-            Career level: <CareerLevel level={careerLevel} />
-          </Badge>
+          {!isNil(careerLevel) && (
+            <Badge color="light" className="mr-1 mb-1">
+              Career level: <CareerLevel level={careerLevel} />
+            </Badge>
+          )}
           {jobTypes.length > 0 &&
             jobTypes.map((i) => (
               <Badge key={i} color="light" className="mr-1 mb-1">

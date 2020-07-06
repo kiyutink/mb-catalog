@@ -1,13 +1,12 @@
 import React, { Fragment } from "react";
-import { getComponentCollection } from "../../boards/components/components";
 import { Page } from "../../lib/types";
 import { GetServerSideProps } from "next";
-import { getBoard } from "../../lib/helpers";
+import { useComponents } from "../../hooks/use-components";
 
-interface CompaniesPageProps extends Page {}
+interface CompaniesPageProps {}
 
-const Companies: React.FC<CompaniesPageProps> = ({ board }) => {
-  const { Header, Footer } = getComponentCollection(board.slug);
+const Companies: React.FC<CompaniesPageProps> = () => {
+  const { Header, Footer } = useComponents();
   return (
     <Fragment>
       <Header />
@@ -19,12 +18,9 @@ const Companies: React.FC<CompaniesPageProps> = ({ board }) => {
 export default Companies;
 
 export const getServerSideProps: GetServerSideProps<CompaniesPageProps> = async (
-  ctx
+  context
 ) => {
-  const board = getBoard(ctx);
   return {
-    props: {
-      board,
-    },
+    props: {},
   };
 };
