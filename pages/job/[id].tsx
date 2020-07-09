@@ -4,12 +4,13 @@ import { GetServerSideProps } from "next";
 import { moberriesApi } from "../../lib/moberries-api";
 import { DoubleColumnLayout } from "../../components/shared/double-column-layout";
 import { useComponents } from "../../hooks/use-components";
+import {
+  getDataAdapter,
+  JobPageProps,
+} from "../../data-adapters/data-adapters";
+import { getBoard } from "../../lib/helpers";
 
-interface JobPageProps {
-  job: Job;
-}
-
-const JobPage: React.FC<JobPageProps> = ({ job }) => {
+const JobPage: React.FC<JobPageProps> = ({ job, similarJobs }) => {
   const {
     Header,
     Footer,
@@ -28,7 +29,7 @@ const JobPage: React.FC<JobPageProps> = ({ job }) => {
           <JobDescription job={job} />
         </DoubleColumnLayout.Content>
         <DoubleColumnLayout.Sidebar>
-          <JobSidebar job={job} />
+          <JobSidebar job={job} similarJobs={similarJobs} />
         </DoubleColumnLayout.Sidebar>
       </DoubleColumnLayout>
       <Footer />
@@ -39,13 +40,8 @@ const JobPage: React.FC<JobPageProps> = ({ job }) => {
 export default JobPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const jobId = Number(context.query.id);
+  const board = getBoard(context.req);
+  const adapter = await getDataAdapter(board);
 
-  const { data: job } = await moberriesApi.getJob({ id: jobId });
-
-  return {
-    props: {
-      job,
-    },
-  };
+  return adapter.getJobPageProps(context);
 };

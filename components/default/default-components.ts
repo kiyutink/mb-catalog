@@ -1,5 +1,7 @@
 import dynamic from "next/dynamic";
 import { CompanyInfoLoader } from "../loaders/company-info-loader";
+const DefaultCompanyCard = dynamic(() => import("./default-company-card"));
+const DefaultSimilarJobs = dynamic(() => import("./default-similar-jobs"));
 const DefaultPartnersWithMostJobs = dynamic(() =>
   import("./default-partners-with-most-jobs")
 );
@@ -22,10 +24,12 @@ const DefaultComponents = {
   JobList: DefaultJobList,
   JobCard: DefaultJobCard,
   CompanyInfo: DefaultCompanyInfo,
+  CompanyCard: DefaultCompanyCard,
   JobInfo: DefaultJobInfo,
   JobDetails: DefaultJobDetails,
   JobDescription: DefaultJobDescripion,
   JobSidebar: DefaultJobSidebar,
+  SimilarJobs: DefaultSimilarJobs,
 };
 
 export default DefaultComponents;

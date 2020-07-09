@@ -1,16 +1,18 @@
 import React, { Fragment } from "react";
 import { Job, JobStatuses } from "../../lib/types/moberries-entities";
 import { Button } from "reactstrap";
+import { useComponents } from "../../hooks/use-components";
 
 interface DefaultJobSidebar {
   job: Job;
-  similarJobs?: Job[];
+  similarJobs: Job[];
 }
 
 const DefaultJobSidebar: React.FC<DefaultJobSidebar> = ({
   job,
   similarJobs,
 }) => {
+  const { SimilarJobs } = useComponents();
   return (
     <div className="mt-5">
       {job.status === JobStatuses.ACT && (
@@ -29,8 +31,8 @@ const DefaultJobSidebar: React.FC<DefaultJobSidebar> = ({
           jobId={job.id}
           jobTitle={job.title}
           companyName={job.company.name}
-        />
-        {similarJobs.length > 0 && <SimilarJobList jobs={similarJobs} />} */}
+        /> */}
+      {similarJobs.length > 0 && <SimilarJobs jobs={similarJobs} />}
     </div>
   );
 };

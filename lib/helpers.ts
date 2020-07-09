@@ -1,5 +1,6 @@
 import { IncomingMessage } from "http";
 import { Board, BoardLayoutTypes, BoardDataTypes } from "./types/boards";
+import { head } from "ramda";
 
 export const getSubdomainFromRequest = (
   req: IncomingMessage
@@ -56,3 +57,14 @@ export const getBoard = (req?: IncomingMessage): Board => {
     }
   }
 };
+
+export function randomInteger(min: number, max: number) {
+  return Math.round(min - 0.5 + Math.random() * (max - min + 1))
+}
+
+export function sample<T>(array: T[]) {
+  if (!array || array.length === 0) return null
+  if (array.length === 1) return head<T>(array)
+
+  return array[randomInteger(0, array.length - 1)]
+}

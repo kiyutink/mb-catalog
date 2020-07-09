@@ -4,6 +4,8 @@ import { AbstractDataAdapter } from "./abstract-data-adapter";
 import { GetServerSideProps } from "next";
 import { Board } from "../lib/types/boards";
 import { Page } from "../lib/types/page";
+import { propOr, pluck, pipe } from "ramda";
+import { sample, randomInteger } from "../lib/helpers";
 
 export interface CommonIndexPageProps extends Page {
   companies: Company[];
@@ -11,8 +13,14 @@ export interface CommonIndexPageProps extends Page {
   jobsCount: number;
 }
 
+export interface CommonJobPageProps extends Page {
+  similarJobs: Job[];
+  job: Job;
+}
+
 export class CommonDataAdapter extends AbstractDataAdapter<
-  CommonIndexPageProps
+  CommonIndexPageProps,
+  CommonJobPageProps
 > {
   constructor(board: Board) {
     super();
@@ -20,6 +28,33 @@ export class CommonDataAdapter extends AbstractDataAdapter<
   }
   private board: Board;
   init = async () => {};
+
+  getJobPageProps: GetServerSideProps<CommonJobPageProps> = async (context) => {
+    const jobId = Number(context.query.id);
+
+    const { data: job } = await moberriesApi.getJob({ id: jobId });
+
+    const {
+      data: { results: similarJobs },
+    } = await moberriesApi.getJobList({
+      limit: 6,
+      page: randomInteger(0, 20),
+      job_roles__category: pipe(
+        pluck("category"),
+        sample,
+        propOr("", "id")
+      )(job.jobRoles),
+    });
+
+    return {
+      props: {
+        job,
+        similarJobs,
+        board: this.board,
+      },
+    };
+  };
+
   getIndexPageProps: GetServerSideProps<CommonIndexPageProps> = async (
     context
   ) => {
@@ -59,4 +94,3 @@ export class CommonDataAdapter extends AbstractDataAdapter<
     };
   };
 }
-

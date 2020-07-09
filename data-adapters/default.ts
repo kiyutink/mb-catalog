@@ -1,14 +1,18 @@
 import { JobStatuses, CompanyGroup } from "../lib/types/moberries-entities";
 import { moberriesApi } from "../lib/moberries-api";
-import { CommonIndexPageProps } from "./common";
+import { CommonIndexPageProps, CommonJobPageProps } from "./common";
 import { Board } from "../lib/types/boards";
 import { AbstractDataAdapter } from "./abstract-data-adapter";
 import { GetServerSideProps } from "next";
+import { pluck, propOr, pipe } from "ramda";
+import { sample } from "../lib/helpers";
 
 export interface DefaultIndexPageProps extends CommonIndexPageProps {}
+export interface DefaultJobPageProps extends CommonJobPageProps {}
 
 export class DefaultDataAdapter extends AbstractDataAdapter<
-  DefaultIndexPageProps
+  DefaultIndexPageProps,
+  DefaultJobPageProps
 > {
   constructor(board: Board) {
     super();
@@ -22,6 +26,33 @@ export class DefaultDataAdapter extends AbstractDataAdapter<
     });
     this.companyGroup = companyGroup;
   };
+  getJobPageProps: GetServerSideProps<DefaultJobPageProps> = async (
+    context
+  ) => {
+    const jobId = Number(context.query.id);
+
+    const { data: job } = await moberriesApi.getJob({ id: jobId });
+    const {
+      data: { results: similarJobs },
+    } = await moberriesApi.getJobList({
+      limit: 6,
+      companyGroup: this.companyGroup!.id,
+      job_roles__category: pipe(
+        pluck("category"),
+        sample,
+        propOr("", "id")
+      )(job.jobRoles),
+    });
+
+    return {
+      props: {
+        job,
+        similarJobs,
+        board: this.board,
+      },
+    };
+  };
+
   getIndexPageProps: GetServerSideProps<DefaultIndexPageProps> = async (
     context
   ) => {
@@ -69,4 +100,3 @@ export class DefaultDataAdapter extends AbstractDataAdapter<
     };
   };
 }
-

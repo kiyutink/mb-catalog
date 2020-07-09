@@ -16,7 +16,7 @@ export function pageToOffsetInterceptor(req: AxiosRequestConfig) {
   if (req.params && req.params.page) {
     const { page, limit, ...params } = req.params;
     const offset = limit * (page - 1);
-    req.params = { ...params, offset, limit };
+    req.params = { offset, limit, ...params };
   }
 
   return req;
@@ -83,11 +83,11 @@ export const moberriesApi = {
       limit: 10,
       ...rest,
     };
-    return http(`/api/v2/companies/${id}/jobs/`, {
+    return http.get<BackendListResponse<Job>>(`/api/v2/companies/${id}/jobs/`, {
       params,
     });
   },
-  getJob: ({ id }: { id: number }) => http(`/api/v2/jobs/${id}/`),
+  getJob: ({ id }: { id: number }) => http.get<Job>(`/api/v2/jobs/${id}/`),
   getCompanyGroup: ({ slug }: { slug: string }) =>
     http(`/api/v2/company-groups/${slug}`),
 };
