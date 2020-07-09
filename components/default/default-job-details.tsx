@@ -1,6 +1,6 @@
 import React from "react";
 import { isNil } from "ramda";
-import { Job } from "../../lib/types";
+import { Job } from "../../lib/types/moberries-entities";
 import { Badge, Col, Row } from "reactstrap";
 import { JobType } from "../shared/job-type";
 import { LanguageLevel } from "../shared/language-level";

@@ -1,6 +1,5 @@
-import { GetServerSidePropsContext, NextPageContext } from "next";
-import { Board, BoardSlugs } from "./types";
 import { IncomingMessage } from "http";
+import { Board, BoardLayoutTypes, BoardDataTypes } from "./types/boards";
 
 export const getSubdomainFromRequest = (
   req: IncomingMessage
@@ -15,15 +14,45 @@ export const getSubdomainFromRequest = (
 
 export const getBoard = (req?: IncomingMessage): Board => {
   if (!req) {
-    return { slug: BoardSlugs.Default, subdomain: null };
+    return {
+      layoutType: BoardLayoutTypes.Default,
+      dataType: BoardDataTypes.Common,
+      subdomain: null,
+    };
   }
   const subdomain = getSubdomainFromRequest(req);
-  const allCustomBoardSlugs = Object.values(BoardSlugs).filter(
-    (bs) => bs !== BoardSlugs.Default
-  );
-  if (allCustomBoardSlugs.includes(subdomain as BoardSlugs)) {
-    return { slug: subdomain as BoardSlugs, subdomain };
-  } else {
-    return { slug: BoardSlugs.Default, subdomain };
+  switch (subdomain) {
+    case null:
+    case undefined:
+    case "www":
+    case "jobs":
+      return {
+        layoutType: BoardLayoutTypes.Default,
+        dataType: BoardDataTypes.Common,
+        subdomain,
+      };
+
+    case "lhoft": {
+      return {
+        layoutType: BoardLayoutTypes.Lhoft,
+        dataType: BoardDataTypes.Default,
+        subdomain,
+      };
+    }
+
+    case "remote":
+      return {
+        layoutType: BoardLayoutTypes.Remote,
+        dataType: BoardDataTypes.Remote,
+        subdomain,
+      };
+
+    default: {
+      return {
+        layoutType: BoardLayoutTypes.Default,
+        dataType: BoardDataTypes.Default,
+        subdomain,
+      };
+    }
   }
 };

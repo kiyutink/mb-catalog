@@ -1,12 +1,8 @@
 import React, { Fragment } from "react";
 import { GetServerSideProps } from "next";
-import {
-  DefaultIndexPageProps,
-  getIndexPageProps,
-} from "../page-data-adapters/default";
 import { useComponents } from "../hooks/use-components";
-
-type IndexPageProps = DefaultIndexPageProps;
+import { getBoard } from "../lib/helpers";
+import { getDataAdapter, IndexPageProps } from "../data-adapters/data-adapters";
 
 const IndexPage: React.FC<IndexPageProps> = ({
   companies,
@@ -29,5 +25,7 @@ export default IndexPage;
 export const getServerSideProps: GetServerSideProps<IndexPageProps> = async (
   context
 ) => {
-  return getIndexPageProps(context);
+  const board = getBoard(context.req);
+  const adapter = await getDataAdapter(board);
+  return adapter.getIndexPageProps(context);
 };

@@ -1,16 +1,22 @@
 import "../styles/default/default.scss";
+import "../styles/lhoft/lhoft.scss";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import App, { AppContext, AppProps } from "next/app";
 import NProgress from "nprogress";
 import { Router } from "next/router";
-import { NextPageContext } from "next";
-import { getBoard } from "../lib/helpers";
 import { BoardContext } from "../lib/board-context";
+import { getBoard } from "../lib/helpers";
+import { Board } from "../lib/types/boards";
 
 Router.events.on("routeChangeStart", () => NProgress.start());
 Router.events.on("routeChangeComplete", () => NProgress.done());
 Router.events.on("routeChangeError", () => NProgress.done());
 
-const CustomApp = ({ Component, pageProps, board }: any) => {
+const CustomApp = ({
+  Component,
+  pageProps,
+  board,
+}: AppProps & { board: Board }) => {
   return (
     <BoardContext.Provider value={board}>
       <Component {...pageProps} />
@@ -18,8 +24,9 @@ const CustomApp = ({ Component, pageProps, board }: any) => {
   );
 };
 
-CustomApp.getInitialProps = async ({ ctx }: { ctx: NextPageContext }) => {
-  return { board: getBoard(ctx.req) };
+CustomApp.getInitialProps = async (appContext: AppContext) => {
+  const appProps = await App.getInitialProps(appContext);
+  return { ...appProps, board: getBoard(appContext.ctx.req) };
 };
 
 export default CustomApp;

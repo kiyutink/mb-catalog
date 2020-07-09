@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { CareerLevels } from "../../lib/types";
+import { CareerLevels } from "../../lib/types/moberries-entities";
 
 export const CareerLevel: React.FC<{ level: CareerLevels }> = ({ level }) => (
   <Fragment>

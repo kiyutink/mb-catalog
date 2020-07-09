@@ -1,10 +1,11 @@
 import LhoftComponents from "./lhoft/lhoft-components";
 import DefaultComponents from "./default/default-components";
-import { BoardSlugs } from "../lib/types";
+import { BoardLayoutTypes } from "../lib/types/boards";
 
-export const getComponentCollection = (slug: BoardSlugs) => {
+export const getComponentCollection = (layoutType: BoardLayoutTypes) => {
   return {
-    [BoardSlugs.Lhoft]: LhoftComponents,
-    [BoardSlugs.Default]: DefaultComponents,
-  }[slug];
+    [BoardLayoutTypes.Lhoft]: LhoftComponents,
+    [BoardLayoutTypes.Default]: DefaultComponents,
+    [BoardLayoutTypes.Remote]: DefaultComponents,
+  }[layoutType];
 };

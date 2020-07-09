@@ -4,5 +4,5 @@ import { getComponentCollection } from "../components/components";
 
 export const useComponents = () => {
   const board = useContext(BoardContext);
-  return getComponentCollection(board.slug);
+  return getComponentCollection(board.layoutType);
 };

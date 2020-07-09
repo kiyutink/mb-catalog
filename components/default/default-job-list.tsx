@@ -1,5 +1,5 @@
 import React from "react";
-import { Job } from "../../lib/types";
+import { Job } from "../../lib/types/moberries-entities";
 import DefaultJobCard from "./default-job-card";
 import { Row, Col, Container } from "reactstrap";
 import { Pagination } from "../shared/pagination";

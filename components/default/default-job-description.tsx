@@ -1,5 +1,5 @@
 import React from "react";
-import { Job } from "../../lib/types";
+import { Job } from "../../lib/types/moberries-entities";
 
 interface DefaultJobDescriptionProps {
   job: Job;

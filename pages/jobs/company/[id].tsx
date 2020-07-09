@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { GetServerSideProps } from "next";
 import { moberriesApi } from "../../../lib/moberries-api";
-import { Company, Page, Job } from "../../../lib/types";
+import { Company, Job, JobStatuses } from "../../../lib/types/moberries-entities";
 import { useComponents } from "../../../hooks/use-components";
 
 interface CompanyPageProps {
@@ -37,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     data: { results: jobs, count: jobsCount },
   } = await moberriesApi.getCompanyJobList({
     id: companyId,
-    status: "ACT",
+    status: JobStatuses.ACT,
   });
   return {
     props: {

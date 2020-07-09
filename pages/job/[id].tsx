@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Job, Page } from "../../lib/types";
+import { Job } from "../../lib/types/moberries-entities";
 import { GetServerSideProps } from "next";
 import { moberriesApi } from "../../lib/moberries-api";
 import { DoubleColumnLayout } from "../../components/shared/double-column-layout";
@@ -17,7 +17,7 @@ const JobPage: React.FC<JobPageProps> = ({ job }) => {
     JobDetails,
     JobDescription,
     JobSidebar,
-  } = useComponents()
+  } = useComponents();
   return (
     <Fragment>
       <Header />

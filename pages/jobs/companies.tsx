@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Page } from "../../lib/types";
 import { GetServerSideProps } from "next";
 import { useComponents } from "../../hooks/use-components";
 

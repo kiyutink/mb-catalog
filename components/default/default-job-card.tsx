@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import { Media } from "reactstrap";
 import Link from "next/link";
-import { Job } from "../../lib/types";
+import { Job } from "../../lib/types/moberries-entities";
 import { Img } from "../shared/img";
 import { Salary } from "../shared/salary";
 

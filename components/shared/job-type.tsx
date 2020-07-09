@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { JobTypes } from "../../lib/types";
+import { JobTypes } from "../../lib/types/moberries-entities";
 
 export const JobType: React.FC<{ jobType: JobTypes }> = ({ jobType }) => (
   <Fragment>

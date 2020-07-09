@@ -1,6 +1,7 @@
+import dynamic from "next/dynamic";
 import DefaultComponents from "../default/default-components";
-import LhoftHeader from "./lhoft-header";
-import LhoftFooter from "./lhoft-footer";
+const LhoftHeader = dynamic(() => import("./lhoft-header"));
+const LhoftFooter = dynamic(() => import("./lhoft-footer"));
 
 const LhoftComponents = {
   ...DefaultComponents,

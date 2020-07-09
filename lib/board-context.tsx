@@ -1,7 +1,8 @@
 import React from "react";
-import { Board, BoardSlugs } from "./types";
+import { BoardLayoutTypes, BoardDataTypes, Board } from "./types/boards";
 
 export const BoardContext = React.createContext<Board>({
-  slug: BoardSlugs.Default,
-  subdomain: null,
+  layoutType: BoardLayoutTypes.Default,
+  dataType: BoardDataTypes.Common,
+  subdomain: null
 });

@@ -1,17 +1,3 @@
-export enum BoardSlugs {
-  Lhoft = "lhoft",
-  Default = "default",
-}
-
-export interface Board {
-  slug: BoardSlugs;
-  subdomain: string | null;
-}
-
-export interface Page {
-  board: Board;
-}
-
 export enum CompanySizes {
   LE10 = "1_to_10",
   LE50 = "11_to_50",
@@ -137,4 +123,14 @@ export interface Job {
   recruiterBooster: boolean;
 }
 
+export interface CompanyGroup {
+  company: Company;
+  title: string;
+  id: number;
+  slug: string;
+  logo: string;
+  createdAt: string;
+}
+
 export type ComponentCollection = { [key: string]: React.FC };
+
