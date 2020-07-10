@@ -12,7 +12,7 @@ const DefaultJobSidebar: React.FC<DefaultJobSidebar> = ({
   job,
   similarJobs,
 }) => {
-  const { SimilarJobs } = useComponents();
+  const { SimilarJobs, JobShare } = useComponents();
   return (
     <div className="mt-5">
       {job.status === JobStatuses.ACT && (
@@ -27,11 +27,7 @@ const DefaultJobSidebar: React.FC<DefaultJobSidebar> = ({
           Apply now
         </Button>
       )}
-      {/* <JobShare
-          jobId={job.id}
-          jobTitle={job.title}
-          companyName={job.company.name}
-        /> */}
+      <JobShare job={job} />
       {similarJobs.length > 0 && <SimilarJobs jobs={similarJobs} />}
     </div>
   );

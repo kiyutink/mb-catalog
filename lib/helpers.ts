@@ -59,12 +59,54 @@ export const getBoard = (req?: IncomingMessage): Board => {
 };
 
 export function randomInteger(min: number, max: number) {
-  return Math.round(min - 0.5 + Math.random() * (max - min + 1))
+  return Math.round(min - 0.5 + Math.random() * (max - min + 1));
 }
 
 export function sample<T>(array: T[]) {
-  if (!array || array.length === 0) return null
-  if (array.length === 1) return head<T>(array)
+  if (!array || array.length === 0) return null;
+  if (array.length === 1) return head<T>(array);
 
-  return array[randomInteger(0, array.length - 1)]
+  return array[randomInteger(0, array.length - 1)];
+}
+
+export const popupCenter = (
+  url: string,
+  title: string,
+  w: number,
+  h: number
+): void => {
+  const width = window.innerWidth
+    ? window.innerWidth
+    : document.documentElement.clientWidth
+    ? document.documentElement.clientWidth
+    : window.screen.width;
+
+  const height = window.innerHeight
+    ? window.innerHeight
+    : document.documentElement.clientHeight
+    ? document.documentElement.clientHeight
+    : window.screen.height;
+
+  const left = width / 2 - w / 2 + window.screenLeft;
+  const top = height / 2 - h / 2 + window.screenTop;
+  const newWindow = window.open(
+    url,
+    title,
+    "scrollbars=yes, width=" +
+      w +
+      ", height=" +
+      h +
+      ", top=" +
+      top +
+      ", left=" +
+      left
+  );
+
+  if (newWindow?.focus) {
+    newWindow.focus();
+  }
+};
+
+export function getCurrentUrl() {
+  return `https://${window.location.hostname}`;
 }
