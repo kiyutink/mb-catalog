@@ -26,7 +26,7 @@ export class CommonDataAdapter extends AbstractDataAdapter<
     super();
     this.board = board;
   }
-  private board: Board;
+  board: Board;
   init = async () => {};
 
   getJobPageProps: GetServerSideProps<CommonJobPageProps> = async (context) => {

@@ -19,7 +19,7 @@ export class DefaultDataAdapter extends AbstractDataAdapter<
     this.board = board;
   }
   private companyGroup: CompanyGroup | null = null;
-  private board: Board;
+  board: Board;
   init = async () => {
     const { data: companyGroup } = await moberriesApi.getCompanyGroup({
       slug: this.board.subdomain!,

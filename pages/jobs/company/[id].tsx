@@ -1,8 +1,9 @@
 import React, { Fragment } from "react";
 import { GetServerSideProps } from "next";
-import { moberriesApi } from "../../../lib/moberries-api";
-import { Company, Job, JobStatuses } from "../../../lib/types/moberries-entities";
+import { Company, Job } from "../../../lib/types/moberries-entities";
 import { useComponents } from "../../../hooks/use-components";
+import { getBoard } from "../../../lib/helpers";
+import { getDataAdapter } from "../../../data-adapters/data-adapters";
 
 interface CompanyPageProps {
   company: Company;
@@ -29,21 +30,8 @@ const CompanyPage: React.FC<CompanyPageProps> = ({
 export default CompanyPage;
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const companyId = Number(context.query.id);
-  const { data: company } = await moberriesApi.getCompany({
-    id: companyId,
-  });
-  const {
-    data: { results: jobs, count: jobsCount },
-  } = await moberriesApi.getCompanyJobList({
-    id: companyId,
-    status: JobStatuses.ACT,
-  });
-  return {
-    props: {
-      company,
-      jobs,
-      jobsCount,
-    },
-  };
+  const board = getBoard(context.req);
+  const adapter = await getDataAdapter(board);
+
+  return adapter.getCompanyPageProps(context);
 };
