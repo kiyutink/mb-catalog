@@ -8,7 +8,7 @@ import {
 } from "reactstrap";
 import Link from "next/link";
 
-export default () => {
+const DefaultHeader = () => {
   return (
     <Navbar color="dark" dark>
       <Container>
@@ -44,3 +44,5 @@ export default () => {
     </Navbar>
   );
 };
+
+export default DefaultHeader;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "reactstrap";
 
-export default () => {
+const DefaultFooter = () => {
   return (
     <footer className="bg-white text-center text-md-left">
       <Container>
@@ -180,3 +180,5 @@ export default () => {
     </footer>
   );
 };
+
+export default DefaultFooter;
