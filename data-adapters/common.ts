@@ -65,7 +65,7 @@ export class CommonDataAdapter extends AbstractDataAdapter<
       data: { results: similarJobs },
     } = await moberriesApi.getJobList({
       limit: 6,
-      page: randomInteger(0, 20),
+      page: randomInteger(0, 3),
       job_roles__category: pipe(
         pluck("category"),
         sample,
