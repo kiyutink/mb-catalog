@@ -1,6 +1,10 @@
 import { JobStatuses, CompanyGroup } from "../lib/types/moberries-entities";
 import { moberriesApi } from "../lib/moberries-api";
-import { CommonIndexPageProps, CommonJobPageProps } from "./common";
+import {
+  CommonIndexPageProps,
+  CommonJobPageProps,
+  CommonCompaniesPageProps,
+} from "./common";
 import { Board } from "../lib/types/boards";
 import { AbstractDataAdapter } from "./abstract-data-adapter";
 import { GetServerSideProps } from "next";
@@ -9,10 +13,12 @@ import { sample } from "../lib/helpers";
 
 export interface DefaultIndexPageProps extends CommonIndexPageProps {}
 export interface DefaultJobPageProps extends CommonJobPageProps {}
+export interface DefaultCompaniesPageProps extends CommonCompaniesPageProps {}
 
 export class DefaultDataAdapter extends AbstractDataAdapter<
   DefaultIndexPageProps,
-  DefaultJobPageProps
+  DefaultJobPageProps,
+  DefaultCompaniesPageProps
 > {
   constructor(board: Board) {
     super();
@@ -26,6 +32,28 @@ export class DefaultDataAdapter extends AbstractDataAdapter<
     });
     this.companyGroup = companyGroup;
   };
+
+  getCompaniesPageProps: GetServerSideProps<DefaultCompaniesPageProps> = async (
+    context
+  ) => {
+    const {
+      data: { results: companies, count: companiesCount },
+    } = await moberriesApi.getCompanyList({
+      page: context.query.page,
+      limit: 18,
+      activeJobs: true,
+      companyGroup: this.companyGroup!.id,
+    });
+
+    return {
+      props: {
+        companies,
+        companiesCount,
+        board: this.board,
+      },
+    };
+  };
+
   getJobPageProps: GetServerSideProps<DefaultJobPageProps> = async (
     context
   ) => {

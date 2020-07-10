@@ -18,9 +18,16 @@ export interface CommonJobPageProps extends Page {
   job: Job;
 }
 
+export interface CommonCompaniesPageProps extends Page {
+  companies: Company[];
+  companiesCount: number;
+  board: Board;
+}
+
 export class CommonDataAdapter extends AbstractDataAdapter<
   CommonIndexPageProps,
-  CommonJobPageProps
+  CommonJobPageProps,
+  CommonCompaniesPageProps
 > {
   constructor(board: Board) {
     super();
@@ -28,6 +35,26 @@ export class CommonDataAdapter extends AbstractDataAdapter<
   }
   board: Board;
   init = async () => {};
+
+  getCompaniesPageProps: GetServerSideProps<CommonCompaniesPageProps> = async (
+    context
+  ) => {
+    const {
+      data: { results: companies, count: companiesCount },
+    } = await moberriesApi.getCompanyList({
+      page: context.query.page,
+      limit: 18,
+      activeJobs: true,
+    });
+
+    return {
+      props: {
+        companies,
+        companiesCount,
+        board: this.board,
+      },
+    };
+  };
 
   getJobPageProps: GetServerSideProps<CommonJobPageProps> = async (context) => {
     const jobId = Number(context.query.id);

@@ -20,9 +20,9 @@ const DefaultPartnersWithMostJobs: React.FC<DefaultPartnersWithMostJobsProps> = 
           <h1 className="mb-5">Partners with most jobs</h1>
         </Col>
       </Row>
-      <Row className="mb-3">
+      <Row className="mb-4">
         {companies.map((c) => (
-          <Col key={c.id} md={6} lg={4} className="mb-3">
+          <Col key={c.id} md={6} lg={4} className="py-1">
             <CompanyCard company={c} />
           </Col>
         ))}

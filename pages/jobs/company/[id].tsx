@@ -1,15 +1,11 @@
 import React, { Fragment } from "react";
 import { GetServerSideProps } from "next";
-import { Company, Job } from "../../../lib/types/moberries-entities";
 import { useComponents } from "../../../hooks/use-components";
 import { getBoard } from "../../../lib/helpers";
 import { getDataAdapter } from "../../../data-adapters/data-adapters";
+import { SharedCompanyPageProps } from "../../../data-adapters/abstract-data-adapter";
 
-interface CompanyPageProps {
-  company: Company;
-  jobs: Job[];
-  jobsCount: number;
-}
+interface CompanyPageProps extends SharedCompanyPageProps {}
 
 const CompanyPage: React.FC<CompanyPageProps> = ({
   company,

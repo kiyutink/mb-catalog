@@ -2,18 +2,20 @@ import { GetServerSideProps } from "next";
 import { Company, Job, JobStatuses } from "../lib/types/moberries-entities";
 import { moberriesApi } from "../lib/moberries-api";
 import { Board } from "../lib/types/boards";
+import { Page } from "../lib/types/page";
 
-interface SharedCompanyPageProps {
+export interface SharedCompanyPageProps extends Page {
   company: Company;
   jobs: Job[];
-  jobsCount: number | null;
+  jobsCount: number;
 }
 
-export abstract class AbstractDataAdapter<T1, T2> {
+export abstract class AbstractDataAdapter<T1, T2, T3> {
   abstract board: Board;
   abstract init(): Promise<void>;
   abstract getIndexPageProps: GetServerSideProps<T1>;
   abstract getJobPageProps: GetServerSideProps<T2>;
+  abstract getCompaniesPageProps: GetServerSideProps<T3>;
   getCompanyPageProps: GetServerSideProps<SharedCompanyPageProps> = async (
     context
   ) => {

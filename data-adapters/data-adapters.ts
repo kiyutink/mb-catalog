@@ -2,17 +2,28 @@ import {
   CommonDataAdapter,
   CommonIndexPageProps,
   CommonJobPageProps,
+  CommonCompaniesPageProps,
 } from "./common";
 import { BoardDataTypes, Board } from "../lib/types/boards";
-import { DefaultDataAdapter, DefaultIndexPageProps } from "./default";
+import {
+  DefaultDataAdapter,
+  DefaultIndexPageProps,
+  DefaultJobPageProps,
+  DefaultCompaniesPageProps,
+} from "./default";
 import { AbstractDataAdapter } from "./abstract-data-adapter";
 
 export type IndexPageProps = CommonIndexPageProps | DefaultIndexPageProps;
-export type JobPageProps = CommonJobPageProps;
+export type JobPageProps = CommonJobPageProps | DefaultJobPageProps;
+export type CompaniesPageProps =
+  | CommonCompaniesPageProps
+  | DefaultCompaniesPageProps;
 
 export const getDataAdapter = async (
   board: Board
-): Promise<AbstractDataAdapter<IndexPageProps, JobPageProps>> => {
+): Promise<
+  AbstractDataAdapter<IndexPageProps, JobPageProps, CompaniesPageProps>
+> => {
   let Adapter;
 
   switch (board.dataType) {

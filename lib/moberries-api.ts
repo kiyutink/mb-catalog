@@ -61,7 +61,7 @@ type RequestParams = {
 export const moberriesApi = {
   getCompanyList: (params?: RequestParams) => {
     return http.get<BackendListResponse<Company>>("/api/v2/partners/", {
-      params: { limit: 10, offset: 0, ...params },
+      params: { limit: 10, ...params },
     });
   },
 

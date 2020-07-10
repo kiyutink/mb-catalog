@@ -17,6 +17,7 @@ const DefaultJobDetails = dynamic(() => import("./default-job-details"));
 const DefaultJobDescripion = dynamic(() => import("./default-job-description"));
 const DefaultJobSidebar = dynamic(() => import("./default-job-sidebar"));
 const DefaultJobShare = dynamic(() => import("./default-job-share"));
+const DefaultCompaniesList = dynamic(() => import("./default-companies-list"));
 
 const DefaultComponents = {
   Header: DefaultHeader,
@@ -32,6 +33,7 @@ const DefaultComponents = {
   JobSidebar: DefaultJobSidebar,
   SimilarJobs: DefaultSimilarJobs,
   JobShare: DefaultJobShare,
+  CompaniesList: DefaultCompaniesList,
 };
 
 export default DefaultComponents;
