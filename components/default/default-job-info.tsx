@@ -35,7 +35,7 @@ const DefaultJobInfo: React.FC<DefaultJobInfoProps> = ({ job }) => {
         <div className="d-flex flex-wrap tag-list">
           {job.locations.map((l) => (
             <span key={l.placeId} className="mr-2">
-              <i className="fas fa-sm fa-map-marker-alt" /> {l.name}
+              <i className="fas fa-map-marker-alt" /> {l.name}
             </span>
           ))}
         </div>

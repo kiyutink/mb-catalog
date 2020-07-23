@@ -39,7 +39,7 @@ export function listToStringInterceptor(req: AxiosRequestConfig) {
 }
 
 export const http = axios.create({
-  baseURL: "https://api.moberries.com/",
+  baseURL: "https://api.dev.moberries.com/",
   timeout: 30000,
   headers: {},
 });
@@ -90,4 +90,15 @@ export const moberriesApi = {
   getJob: ({ id }: { id: number }) => http.get<Job>(`/api/v2/jobs/${id}/`),
   getCompanyGroup: ({ slug }: { slug: string }) =>
     http(`/api/v2/company-groups/${slug}`),
+
+  getCities: (params: ObjectLiteral) => {
+    return http.get<any>("/api/v2/cities/", { params });
+  },
+
+  getJobRoleCategoryList: (params: any = {}) =>
+    http.get("/api/v2/jobrolecategories/", {
+      params: { limit: 100, offset: 0, ...params },
+    }),
+  getJobRoleCategory: ({ id }: { id: number }) =>
+    http.get(`/api/v2/jobrolecategories/${id}/`),
 };

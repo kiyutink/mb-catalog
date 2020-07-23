@@ -43,6 +43,7 @@ export class DefaultDataAdapter extends AbstractDataAdapter<
       limit: 18,
       activeJobs: true,
       companyGroup: this.companyGroup!.id,
+      order: "used_jobs",
     });
 
     return {

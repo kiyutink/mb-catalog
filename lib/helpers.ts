@@ -1,3 +1,4 @@
+import qs from "qs";
 import { IncomingMessage } from "http";
 import { Board, BoardLayoutTypes, BoardDataTypes } from "./types/boards";
 import { head } from "ramda";
@@ -110,3 +111,22 @@ export const popupCenter = (
 export function getCurrentUrl() {
   return `https://${window.location.hostname}`;
 }
+
+export const updateQueryParams = (
+  query: ObjectLiteral = {},
+  params: ObjectLiteral = {},
+  addQueryPrefix = false
+) => {
+  const updatedQuery = Object.entries({ ...query, ...params }).reduce<
+    ObjectLiteral
+  >((acc, [key, value]) => {
+    if (value !== null && value !== "" && value !== undefined) {
+      acc[key] = value;
+    }
+    return acc;
+  }, {});
+
+  return qs.stringify(updatedQuery, {
+    addQueryPrefix,
+  });
+};

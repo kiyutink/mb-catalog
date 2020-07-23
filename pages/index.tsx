@@ -9,11 +9,18 @@ const IndexPage: React.FC<IndexPageProps> = ({
   jobs,
   jobsCount,
 }) => {
-  const { Header, Footer, PartnersWithMostJobs, JobList } = useComponents();
+  const {
+    Header,
+    Footer,
+    PartnersWithMostJobs,
+    JobList,
+    JobsFilter,
+  } = useComponents();
   return (
     <Fragment>
       <Header />
       <PartnersWithMostJobs companies={companies} />
+      <JobsFilter />
       <JobList jobs={jobs} jobsCount={jobsCount} />
       <Footer />
     </Fragment>

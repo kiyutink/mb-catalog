@@ -45,6 +45,7 @@ export class CommonDataAdapter extends AbstractDataAdapter<
       page: context.query.page,
       limit: 18,
       activeJobs: true,
+      order: "used_jobs",
     });
 
     return {
@@ -101,6 +102,9 @@ export class CommonDataAdapter extends AbstractDataAdapter<
       moberriesApi.getJobList({
         page: context.query.page,
         status: JobStatuses.ACT,
+        company: context.query.company,
+        locations__place_id: context.query.location,
+        job_roles__category: context.query.category,
         fields: [
           "title",
           "company",
