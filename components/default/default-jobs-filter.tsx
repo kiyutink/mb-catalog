@@ -9,11 +9,11 @@ import {
   InputGroupAddon,
   Col,
   Row,
+  Form,
 } from "reactstrap";
 import { moberriesApi } from "../../lib/moberries-api";
 import { AsyncSelect } from "../shared/async-select";
 import { useRouter } from "next/router";
-import { googleMapsApi } from "../../lib/google-maps-api";
 import { updateQueryParams } from "../../lib/helpers";
 import { head } from "ramda";
 
@@ -63,6 +63,7 @@ const DefaultJobsFilter: React.FC = () => {
   const [location, setLocation] = useState<string | undefined | null>();
   const [company, setCompany] = useState<string | undefined | null>();
   const [category, setCategory] = useState<string | undefined | null>();
+  const [search, setSearch] = useState<string>(router.query.q as string);
   useEffect(() => {
     const fetch = async () => {
       if (!params.company) {
@@ -109,14 +110,31 @@ const DefaultJobsFilter: React.FC = () => {
     <Container>
       <Row>
         <Col xs={12} lg={{ size: 10, offset: 1 }}>
-          <InputGroup size="lg">
-            <Input />
-            <InputGroupAddon addonType="append">
-              <Button color="primary">
-                <i className="fas fa-search" />
-              </Button>
-            </InputGroupAddon>
-          </InputGroup>
+          <Form
+            onSubmit={(e) => {
+              e.preventDefault();
+              router.push({
+                pathname: router.route,
+                query: updateQueryParams(params, {
+                  q: search ?? null,
+                }),
+              });
+            }}
+            noValidate
+          >
+            <InputGroup size="lg">
+              <Input
+                value={search}
+                onChange={({ target: { value } }) => setSearch(value)}
+              />
+              <InputGroupAddon addonType="append">
+                <Button color="primary">
+                  <i className="fas fa-search" />
+                </Button>
+              </InputGroupAddon>
+            </InputGroup>
+          </Form>
+
           <Row noGutters>
             <Col xs={12} md={4} lg={3} className="pt-1 pr-md-1">
               <AsyncSelect

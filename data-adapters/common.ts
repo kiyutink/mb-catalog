@@ -105,6 +105,7 @@ export class CommonDataAdapter extends AbstractDataAdapter<
         company: context.query.company,
         locations__place_id: context.query.location,
         job_roles__category: context.query.category,
+        search: context.query.q,
         fields: [
           "title",
           "company",
