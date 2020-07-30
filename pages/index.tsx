@@ -15,10 +15,12 @@ const IndexPage: React.FC<IndexPageProps> = ({
     PartnersWithMostJobs,
     JobList,
     JobsFilter,
+    Hero,
   } = useComponents();
   return (
     <Fragment>
       <Header />
+      <Hero />
       <PartnersWithMostJobs companies={companies} />
       <JobsFilter />
       <JobList jobs={jobs} jobsCount={jobsCount} />

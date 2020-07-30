@@ -39,27 +39,27 @@ interface DefaultJobShareProps {
 
 const DefaultJobShare: React.FC<DefaultJobShareProps> = ({ job }) => {
   return (
-    <div className="p-3 box mb-3 rounded border">
-      <h5>Share</h5>
-      <div className="d-flex">
-        <div
-          className="mr-3 clickable"
-          onClick={() => handleLinkedinClick(job)}
-        >
-          <i className="fab fa-linkedin-in fa-2x text-muted" />
-        </div>
-        <div
-          className="mr-3 clickable"
-          onClick={() => handleFacebookClick(job)}
-        >
-          <i className="fab fa-facebook-f fa-2x text-muted" />
-        </div>
-        <div className="clickable" onClick={() => handleTwitterClick(job)}>
-          <i className="fab fa-twitter fa-2x text-muted" />
+      <div className="p-3 box mb-3 rounded border">
+        <h5>Share</h5>
+        <div className="d-flex">
+          <div
+            className="mr-3 clickable"
+            onClick={() => handleLinkedinClick(job)}
+          >
+            <i className="fab fa-linkedin-in fa-2x text-muted" />
+          </div>
+          <div
+            className="mr-3 clickable"
+            onClick={() => handleFacebookClick(job)}
+          >
+            <i className="fab fa-facebook-f fa-2x text-muted" />
+          </div>
+          <div className="clickable" onClick={() => handleTwitterClick(job)}>
+            <i className="fab fa-twitter fa-2x text-muted" />
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default DefaultJobShare;

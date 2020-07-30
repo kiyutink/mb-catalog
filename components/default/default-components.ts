@@ -1,24 +1,21 @@
 import dynamic from "next/dynamic";
-import { CompanyInfoLoader } from "../loaders/company-info-loader";
-const DefaultCompanyCard = dynamic(() => import("./default-company-card"));
-const DefaultSimilarJobs = dynamic(() => import("./default-similar-jobs"));
-const DefaultPartnersWithMostJobs = dynamic(() =>
-  import("./default-partners-with-most-jobs")
-);
-const DefaultJobList = dynamic(() => import("./default-job-list"));
+import DefaultPartnersWithMostJobs from "./default-partners-with-most-jobs";
+import DefaultJobList from "./default-job-list";
+import DefaultJobCard from "./default-job-card";
+import DefaultCompanyInfo from "./default-company-info";
+import DefaultCompanyCard from "./default-company-card";
+import DefaultJobInfo from "./default-job-info";
+import DefaultJobDetails from "./default-job-details";
+import DefaultJobDescription from "./default-job-description";
+import DefaultJobSidebar from "./default-job-sidebar";
+import DefaultSimilarJobs from "./default-similar-jobs";
+import DefaultJobShare from "./default-job-share";
+import DefaultCompaniesList from "./default-companies-list";
+import DefaultJobsFilter from "./default-jobs-filter";
+import DefaultHero from "./default-hero";
+
 const DefaultHeader = dynamic(() => import("./default-header"));
 const DefaultFooter = dynamic(() => import("./default-footer"));
-const DefaultJobCard = dynamic(() => import("./default-job-card"));
-const DefaultCompanyInfo = dynamic(() => import("./default-company-info"), {
-  loading: CompanyInfoLoader,
-});
-const DefaultJobInfo = dynamic(() => import("./default-job-info"));
-const DefaultJobDetails = dynamic(() => import("./default-job-details"));
-const DefaultJobDescripion = dynamic(() => import("./default-job-description"));
-const DefaultJobSidebar = dynamic(() => import("./default-job-sidebar"));
-const DefaultJobShare = dynamic(() => import("./default-job-share"));
-const DefaultCompaniesList = dynamic(() => import("./default-companies-list"));
-const DefaultJobsFilter = dynamic(() => import("./default-jobs-filter"));
 
 const DefaultComponents = {
   Header: DefaultHeader,
@@ -30,12 +27,13 @@ const DefaultComponents = {
   CompanyCard: DefaultCompanyCard,
   JobInfo: DefaultJobInfo,
   JobDetails: DefaultJobDetails,
-  JobDescription: DefaultJobDescripion,
+  JobDescription: DefaultJobDescription,
   JobSidebar: DefaultJobSidebar,
   SimilarJobs: DefaultSimilarJobs,
   JobShare: DefaultJobShare,
   CompaniesList: DefaultCompaniesList,
   JobsFilter: DefaultJobsFilter,
+  Hero: DefaultHero,
 };
 
 export default DefaultComponents;
