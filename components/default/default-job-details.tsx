@@ -23,7 +23,7 @@ const DefaultJobDetails: React.FC<DefaultJobDetailsProps> = ({ job }) => {
     languages,
   } = job;
   return (
-    <div className="p-3 border-left border-right box rounded my-2">
+    <div className="p-3 border box rounded my-2">
       <Row className="mt-1">
         <Col xs={12} md={2}>
           <span className="text-muted">General</span>

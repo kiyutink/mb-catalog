@@ -24,7 +24,7 @@ export const Img: React.FC<ImgHTMLAttributes<HTMLImageElement>> = ({
       }}
       width={width}
       height={height}
-      src={loadingError ? DEFAULT_IMAGE_SRC : src}
+      src={loadingError || !src ? DEFAULT_IMAGE_SRC : src}
       {...rest}
     />
   );

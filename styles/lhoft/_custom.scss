@@ -1,0 +1,45 @@
+.section-title {
+  position: relative;
+  padding-left: 5rem;
+  &:after {
+    content: "";
+    width: 4rem;
+    height: 2px;
+    background: #313133;
+    position: absolute;
+    left: 0;
+    top: 50%;
+  }
+}
+
+.login-button {
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+
+  small {
+    position: relative;
+    z-index: 1;
+  }
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    display: block;
+    transition: transform 0.3s ease;
+    background-color: $success;
+    pointer-events: none;
+  }
+
+  &:hover {
+    text-decoration: none;
+
+    &::before {
+      transform: translateX(100%);
+    }
+  }
+}

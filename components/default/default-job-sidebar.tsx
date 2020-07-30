@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Job, JobStatuses } from "../../lib/types/moberries-entities";
 import { Button } from "reactstrap";
 import { useComponents } from "../../hooks/use-components";
